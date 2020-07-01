@@ -1,10 +1,12 @@
 # ASVA JS Password check
 
-Easily check a password against OWASP ASVA v4. 2.1.1 / NIST 5.1.1.2 / CWE-521 requirements for minimum character count and common passwords.
+Easily check a password against OWASP ASVA v4. 2.1.1, 2.1.3, 2.1.7 / NIST 5.1.1.2 / CWE-521 requirements for minimum character count and common passwords.
 
-Minimun character count 12 and top common passwords.
+2.1.1 - Minimum character count 12 and top common passwords.
 
-Top 10.000 most common passwords sourced from https://github.com/danielmiessler/SecLists/tree/master/Passwords/Common-Credentials
+2.1.3 - Passwords CAN contain spaces. Multiple consecutive spaces are truncated to single spaces
+
+2.1.7 - Password is checked against top 10.000 most common passwords sourced from https://github.com/danielmiessler/SecLists/tree/master/Passwords/Common-Credentials
 (commit a3416ba on May 27)
 
 ## OWASP ASVA
@@ -22,7 +24,7 @@ https://cwe.mitre.org/data/definitions/521.html
 
 ## Use
 
-Pass it a string and get back a map.
+Pass a string to check and get back a map.
 
 ```
 const passwordCheck = require('@marcusfernstrom/asva-password')

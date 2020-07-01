@@ -1,5 +1,5 @@
 /**
-    Easily check a password against OWASP ASVA v4. 2.1.1 / NIST 5.1.1.2 / CWE-521 requirements for minimum character count and common passwords.
+    Easily check a password against OWASP ASVA v4. 2.1.1, 2.1.3, 2.1.7 / NIST 5.1.1.2 / CWE-521 requirements for minimum character count and common passwords.
     Minimun character count 12
     Top 10.000 most common passwords sourced from https://github.com/danielmiessler/SecLists/tree/master/Passwords/Common-Credentials - commit a3416ba on May 27
 
@@ -10,8 +10,12 @@
 
 module.exports = function isPasswordValid(password){
     function isPasswordShort(password){
-        // Checks password against OWASP ASVA v4. 2.1.1 / NIST 5.1.1.2 / CWE-521
-        return password.trim().length < 12
+        // Checks password against OWASP ASVA v4. 2.1.1 & 2.1.3/ NIST 5.1.1.2 / CWE-521
+        // Truncate multiple spaces into single space as per ASVA 2.1.3 
+        password = password.replace(/\s+/g, " ")
+
+        // No trim, as spaces are valid password character
+        return password.length < 12
     }
 
     function isPasswordCommon(password){
@@ -10018,6 +10022,7 @@ module.exports = function isPasswordValid(password){
             'eeeee1',
             'eyphed']
 
+        password = password.toLowerCase()
         return passwords.indexOf(password) > -1
     }
 
